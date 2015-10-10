@@ -12,6 +12,7 @@
 {
     NSMutableArray *hotArray;
     NSMutableArray *hisArray;
+    
 }
 @property (weak, nonatomic) IBOutlet UIView *hotView;
 @property (weak, nonatomic) IBOutlet UIView *historyView;

@@ -5,7 +5,11 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
+<<<<<<< HEAD
 	<string>A2662B4B-AE90-4799-A415-B40E0D43703B</string>
+=======
+	<string>54365231-9A58-4486-AC85-7C4A46CA69FA</string>
+>>>>>>> origin/master
 	<key>IDESourceControlProjectName</key>
 	<string>导客宝</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
@@ -34,7 +38,11 @@
 			<key>IDESourceControlWCCIdentifierKey</key>
 			<string>C2432BC66B9798836BB8EE89CF98FD0949F67468</string>
 			<key>IDESourceControlWCCName</key>
+<<<<<<< HEAD
 			<string>%E5%AF%BC%E5%AE%A2%E5%AE%9D</string>
+=======
+			<string>daokebao</string>
+>>>>>>> origin/master
 		</dict>
 	</array>
 </dict>
