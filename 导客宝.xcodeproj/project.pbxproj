@@ -11,6 +11,8 @@
 		2E113AD51BC51C670058950F /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E113ACD1BC51C670058950F /* UserViewController.m */; };
 		2E113AD61BC51C670058950F /* UserInformationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E113AD21BC51C670058950F /* UserInformationTableViewCell.m */; };
 		2E113AD71BC51C670058950F /* UserInformationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E113AD31BC51C670058950F /* UserInformationTableViewCell.xib */; };
+		2E46E2FE1BCBA10500AC0B9D /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E46E2FD1BCBA10500AC0B9D /* DetailViewController.m */; };
+		2E46E3001BCBA5D900AC0B9D /* jiazaipic.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E46E2FF1BCBA5D900AC0B9D /* jiazaipic.png */; };
 		2E80D2441BC6507B00C29A50 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E80D2431BC6507B00C29A50 /* SearchViewController.m */; };
 		2E80D2471BC66B3B00C29A50 /* SearchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E80D2461BC66B3B00C29A50 /* SearchResultViewController.m */; };
 		2E80D24A1BC672D200C29A50 /* ShowDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E80D2491BC672D200C29A50 /* ShowDetailViewController.m */; };
@@ -61,6 +63,9 @@
 		2E113AD11BC51C670058950F /* UserInformationTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInformationTableViewCell.h; sourceTree = "<group>"; };
 		2E113AD21BC51C670058950F /* UserInformationTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInformationTableViewCell.m; sourceTree = "<group>"; };
 		2E113AD31BC51C670058950F /* UserInformationTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserInformationTableViewCell.xib; sourceTree = "<group>"; };
+		2E46E2FC1BCBA10500AC0B9D /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		2E46E2FD1BCBA10500AC0B9D /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		2E46E2FF1BCBA5D900AC0B9D /* jiazaipic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jiazaipic.png; sourceTree = "<group>"; };
 		2E80D2421BC6507B00C29A50 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
 		2E80D2431BC6507B00C29A50 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		2E80D2451BC66B3B00C29A50 /* SearchResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultViewController.h; sourceTree = "<group>"; };
@@ -167,6 +172,8 @@
 				2E80D2461BC66B3B00C29A50 /* SearchResultViewController.m */,
 				2E80D2481BC672D200C29A50 /* ShowDetailViewController.h */,
 				2E80D2491BC672D200C29A50 /* ShowDetailViewController.m */,
+				2E46E2FC1BCBA10500AC0B9D /* DetailViewController.h */,
+				2E46E2FD1BCBA10500AC0B9D /* DetailViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -229,6 +236,7 @@
 				2EFD348F1BC2840200F02152 /* AppDelegate.h */,
 				2EFD34901BC2840200F02152 /* AppDelegate.m */,
 				2EFD34951BC2840200F02152 /* Main.storyboard */,
+				2E46E2FF1BCBA5D900AC0B9D /* jiazaipic.png */,
 				2EFD34981BC2840200F02152 /* Images.xcassets */,
 				2EFD349A1BC2840200F02152 /* LaunchScreen.xib */,
 				2EFD348B1BC2840200F02152 /* Supporting Files */,
@@ -386,6 +394,7 @@
 				2EFD34971BC2840200F02152 /* Main.storyboard in Resources */,
 				2EFD349C1BC2840200F02152 /* LaunchScreen.xib in Resources */,
 				2E113AD71BC51C670058950F /* UserInformationTableViewCell.xib in Resources */,
+				2E46E3001BCBA5D900AC0B9D /* jiazaipic.png in Resources */,
 				2EFD34991BC2840200F02152 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -409,6 +418,7 @@
 				9F5FE52F1BCB851200592124 /* UIImage+WebP.m in Sources */,
 				9F47BFB01BC756C600D92158 /* Tool.m in Sources */,
 				9F5FE52C1BCB851200592124 /* UIButton+WebCache.m in Sources */,
+				2E46E2FE1BCBA10500AC0B9D /* DetailViewController.m in Sources */,
 				9F5FE5291BCB851200592124 /* SDWebImageDownloaderOperation.m in Sources */,
 				2E113AD41BC51C670058950F /* LoginViewController.m in Sources */,
 				9F5FE5351BCB91CC00592124 /* qjtSingleton.m in Sources */,

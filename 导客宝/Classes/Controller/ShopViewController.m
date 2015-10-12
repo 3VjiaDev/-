@@ -289,7 +289,7 @@
     
     UIImageView *qjtImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, rect.size.width, rect.size.height)];
   
-    [qjtImageView sd_setImageWithURL:[NSURL URLWithString:qjtImage] placeholderImage:[UIImage imageNamed:nil]];
+    [qjtImageView sd_setImageWithURL:[NSURL URLWithString:qjtImage] placeholderImage:[UIImage imageNamed:@"jiazaipic"]];
     [qjtView addSubview:qjtImageView];
     
     UIView *titleView = [[UIView alloc]initWithFrame:CGRectMake(0, (5*rect.size.height)/6, rect.size.width, rect.size.height/6)];
