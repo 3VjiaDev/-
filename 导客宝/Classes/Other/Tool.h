@@ -14,6 +14,12 @@
 //网络请求地址
 + (NSString *)requestURL;
 
+// 功能：得到图片网络请求地址
++ (NSString *)requestImageURL;
+
+//得到全景图地址
++(NSString*)qjtRequestUrl;
+
 //将要请求的数据转换成jsonString
 + (NSString*)param:(NSArray*)objectAry forKey:(NSArray*)keyAry;
 

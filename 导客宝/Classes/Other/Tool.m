@@ -23,6 +23,26 @@
 }
 
 /*
+ 功能：得到图片网络请求地址
+ 输入：null
+ 返回：图片网络请求地址
+ */
++ (NSString *)requestImageURL
+{
+    //mnmnh
+    return @"http://passport.admin.3weijia.com";
+}
+
+/*
+ 功能：得到全景图网络请求地址
+ 输入：null
+ 返回：全景图网络请求地址
+ */
++(NSString *)qjtRequestUrl
+{
+    return @"http://passport.admin.3weijia.com/PMC/Panorama/Show360Test.aspx?SchemeId=";
+}
+/*
  功能：错误提示或者警告
  输入：title：UIAlertView的title msg：UIAlertView的message
  返回：NUll

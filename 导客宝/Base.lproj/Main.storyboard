@@ -399,9 +399,6 @@
                                                 <include reference="x6E-cf-l1j"/>
                                             </mask>
                                         </variation>
-                                        <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                            <rect key="frame" x="693" y="15" width="75" height="65"/>
-                                        </variation>
                                         <connections>
                                             <action selector="select:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MGq-nK-saj"/>
                                         </connections>
@@ -411,12 +408,9 @@
                                         <state key="normal" backgroundImage="搜索-未点击">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
-                                        <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                            <rect key="frame" x="617" y="15" width="75" height="65"/>
-                                        </variation>
                                         <connections>
                                             <action selector="search:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OfJ-ux-rPx"/>
-                                            <segue destination="1Ch-5E-PVe" kind="modal" id="pOo-39-8Fh"/>
+                                            <segue destination="1Ch-5E-PVe" kind="modal" identifier="search" id="pOo-39-8Fh"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rRd-au-hgB">
@@ -440,9 +434,6 @@
                                                 <include reference="kNc-ce-0Sx"/>
                                                 <include reference="oCH-Po-fuG"/>
                                             </mask>
-                                        </variation>
-                                        <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                            <rect key="frame" x="334" y="15" width="100" height="65"/>
                                         </variation>
                                         <connections>
                                             <action selector="changeStyle:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rLu-dW-iIt"/>
@@ -470,9 +461,6 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UVo-rL-4VR">
                                         <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                         <state key="normal" backgroundImage="客户信息-未点击"/>
-                                        <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                            <rect key="frame" x="541" y="15" width="75" height="65"/>
-                                        </variation>
                                         <connections>
                                             <action selector="userInformation:" destination="BYZ-38-t0r" eventType="touchUpInside" id="q7L-N2-SXs"/>
                                         </connections>
@@ -548,9 +536,6 @@
                                         <include reference="og1-lQ-1XZ"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                    <rect key="frame" x="0.0" y="0.0" width="768" height="80"/>
-                                </variation>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -585,6 +570,7 @@
                         <outlet property="faceImage" destination="kyc-Bf-qJl" id="9zF-w1-YX2"/>
                         <segue destination="4Ij-xC-UXK" kind="modal" identifier="customer" id="G5O-zK-CPd"/>
                         <segue destination="0hX-y8-HOM" kind="modal" identifier="loginout" id="ZJ5-iY-1eJ"/>
+                        <segue destination="Aid-Fe-fLQ" kind="modal" identifier="qjtinfo" id="D6h-S4-LGE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -626,9 +612,6 @@
                                                 <include reference="1oO-Sx-kEX"/>
                                                 <include reference="G5X-xC-L2O"/>
                                             </mask>
-                                        </variation>
-                                        <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                            <rect key="frame" x="693" y="15" width="75" height="65"/>
                                         </variation>
                                         <connections>
                                             <action selector="addClient:" destination="4Ij-xC-UXK" eventType="touchUpInside" id="26j-me-mT1"/>
@@ -680,9 +663,6 @@
                                                 <include reference="yMi-ds-FKb"/>
                                             </mask>
                                         </variation>
-                                        <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                            <rect key="frame" x="325" y="15" width="119" height="65"/>
-                                        </variation>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -727,16 +707,10 @@
                                         <include reference="uQO-ID-KEi"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                    <rect key="frame" x="0.0" y="0.0" width="768" height="80"/>
-                                </variation>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="EnU-nL-fHK">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                    <rect key="frame" x="15" y="100" width="738" height="924"/>
-                                </variation>
                                 <connections>
                                     <outlet property="dataSource" destination="4Ij-xC-UXK" id="QR5-Xw-FKK"/>
                                     <outlet property="delegate" destination="4Ij-xC-UXK" id="Tqf-Bu-4M3"/>
@@ -969,6 +943,7 @@
                         <outlet property="historyView" destination="Bi2-ei-pVm" id="30q-9y-Ye6"/>
                         <outlet property="hotView" destination="O8z-L5-4Zd" id="npU-km-GB6"/>
                         <outlet property="searchBar" destination="Av1-T6-aU6" id="35n-dc-D61"/>
+                        <segue destination="x96-OT-lTM" kind="modal" identifier="searchinfo" id="dTR-KD-NHL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Viu-nR-UD8" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -987,10 +962,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Lgn-4u-0nB">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1sB-Zf-f8D" userLabel="View黄">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
@@ -1039,7 +1010,7 @@
                                         </variation>
                                         <connections>
                                             <action selector="return:" destination="x96-OT-lTM" eventType="touchUpInside" id="bfh-Ra-feG"/>
-                                            <segue destination="1Ch-5E-PVe" kind="modal" id="zj8-PH-C27"/>
+                                            <segue destination="1Ch-5E-PVe" kind="modal" id="4hM-BX-GmN"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1078,11 +1049,19 @@
                                     </mask>
                                 </variation>
                             </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Lgn-4u-0nB">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="x96-OT-lTM" id="TQh-z2-zkO"/>
+                                    <outlet property="delegate" destination="x96-OT-lTM" id="aTr-FC-7ec"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Lgn-4u-0nB" firstAttribute="leading" secondItem="yPz-IL-xtH" secondAttribute="leading" constant="15" id="7ac-PK-JJG"/>
-                            <constraint firstAttribute="trailing" secondItem="Lgn-4u-0nB" secondAttribute="trailing" constant="15" id="BWk-xK-qig"/>
+                            <constraint firstItem="Lgn-4u-0nB" firstAttribute="leading" secondItem="yPz-IL-xtH" secondAttribute="leading" id="7ac-PK-JJG"/>
+                            <constraint firstAttribute="trailing" secondItem="Lgn-4u-0nB" secondAttribute="trailing" id="BWk-xK-qig"/>
                             <constraint firstItem="1sB-Zf-f8D" firstAttribute="leading" secondItem="yPz-IL-xtH" secondAttribute="leading" id="DkL-Aj-Nro"/>
                             <constraint firstItem="1sB-Zf-f8D" firstAttribute="top" secondItem="yPz-IL-xtH" secondAttribute="top" id="HVm-YN-TFJ"/>
                             <constraint firstAttribute="trailing" secondItem="1sB-Zf-f8D" secondAttribute="trailing" id="JK0-2D-of0"/>
@@ -1091,8 +1070,8 @@
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
-                                <exclude reference="Lgn-4u-0nB"/>
                                 <exclude reference="1sB-Zf-f8D"/>
+                                <exclude reference="Lgn-4u-0nB"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="N3Q-4u-aVf"/>
@@ -1106,8 +1085,8 @@
                         </variation>
                         <variation key="widthClass=regular">
                             <mask key="subviews">
-                                <include reference="Lgn-4u-0nB"/>
                                 <include reference="1sB-Zf-f8D"/>
+                                <include reference="Lgn-4u-0nB"/>
                             </mask>
                             <mask key="constraints">
                                 <include reference="N3Q-4u-aVf"/>
@@ -1124,7 +1103,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LMd-Hq-ccY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="788.25" y="78.75"/>
+            <point key="canvasLocation" x="1466.25" y="26.25"/>
         </scene>
         <!--详情页－分享-->
         <scene sceneID="xjm-QA-KWe">
@@ -1171,6 +1150,9 @@
                                                 <include reference="mb7-Vc-eyx"/>
                                             </mask>
                                         </variation>
+                                        <connections>
+                                            <segue destination="BYZ-38-t0r" kind="modal" id="YUQ-Qy-gNv"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hmi-0l-t9C">
                                         <rect key="frame" x="-23" y="-15" width="46" height="30"/>
@@ -1327,7 +1309,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ve0-gb-fIJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="869.25" y="981"/>
+            <point key="canvasLocation" x="781.5" y="862.5"/>
         </scene>
     </scenes>
     <resources>
@@ -1346,7 +1328,7 @@
         <image name="返回-未点击" width="150" height="130"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="GIj-gu-CDd"/>
-        <segue reference="zj8-PH-C27"/>
+        <segue reference="4hM-BX-GmN"/>
+        <segue reference="YUQ-Qy-gNv"/>
     </inferredMetricsTieBreakers>
 </document>

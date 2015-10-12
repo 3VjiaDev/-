@@ -36,6 +36,7 @@
 }
 
 - (void)viewDidLoad {
+    NSLog(@"%d%d",10/3,10%3);
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.phoneTextfield.text = @"qeknio";

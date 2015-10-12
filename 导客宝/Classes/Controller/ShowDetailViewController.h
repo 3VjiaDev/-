@@ -10,4 +10,8 @@
 
 @interface ShowDetailViewController : UIViewController
 
+@property (strong, nonatomic)NSString* qjtID;
+@property (strong, nonatomic)NSString* qjtName;
+@property (assign, nonatomic)BOOL isCollenct;
+
 @end

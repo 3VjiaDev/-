@@ -7,6 +7,8 @@
 //
 
 #import "ShowDetailViewController.h"
+#import "qjtSingleton.h"
+#import "Tool.h"
 
 @interface ShowDetailViewController ()
 
@@ -27,6 +29,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.qjtID = [qjtSingleton initQJTSingleton].qjtId;
+    self.qjtName = [qjtSingleton initQJTSingleton].qjtName;
+    self.isCollenct = [qjtSingleton initQJTSingleton].isCollent;
+    
+    NSString *UrlString = [NSString stringWithFormat:@"%@%@",[Tool qjtRequestUrl],self.qjtID];
+    NSLog(@"%@",UrlString);
+    NSURLRequest *request =[NSURLRequest requestWithURL:[NSURL URLWithString:UrlString]];
+    [self.webView loadRequest:request];
 }
 
 - (void)didReceiveMemoryWarning {

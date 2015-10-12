@@ -13,10 +13,6 @@
     NSMutableArray *hotArray;
     NSMutableArray *hisArray;
     
-    //////
-    //////
-    //////
-    
 }
 @property (weak, nonatomic) IBOutlet UIView *hotView;
 @property (weak, nonatomic) IBOutlet UIView *historyView;
@@ -40,7 +36,6 @@
     }
     [self drawListView:self.hotView title:@"热门搜索" delete:NO list:array1];
     [self drawListView:self.historyView title:@"搜索历史" delete:YES list:hisArray];
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -117,6 +112,8 @@
 {
     UILabel *lab=(UILabel*)gestureRecognizer.view;
     NSLog(@"%@",lab.text);
+    //searchinfo
+    [self performSegueWithIdentifier:@"searchinfo" sender:self];
 }
 
 #pragma mark 删除历史记录
