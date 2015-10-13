@@ -255,17 +255,17 @@
     
     UILabel *titleLab = [[UILabel alloc]initWithFrame:CGRectMake(15, (titleView.frame.size.height - 20)/2, rect.size.width-130, 20)];
     titleLab.text = qjtTitle;
-    titleLab.font = [UIFont systemFontOfSize:18.0f];
+    titleLab.font = [UIFont systemFontOfSize:15.0f];
     [titleView addSubview:titleLab];
     
-    UIImageView *isCollectionImageView = [[UIImageView alloc]initWithFrame:CGRectMake(rect.size.width-45, (titleView.frame.size.height - 30)/2, 30, 30)];
+    UIImageView *isCollectionImageView = [[UIImageView alloc]initWithFrame:CGRectMake(rect.size.width-30, (titleView.frame.size.height - 15)/2, 15, 15)];
     
     if (isCollect) {
-        isCollectionImageView.image = [UIImage imageNamed:@"cha-1" ];
+        isCollectionImageView.image = [UIImage imageNamed:@"xiangqingbaocun-dianji" ];
     }
     else
     {
-         isCollectionImageView.image = [UIImage imageNamed:@"cha-1" ];
+         isCollectionImageView.image = [UIImage imageNamed:@"xiangqingbaocun-dianji" ];
     }
     [titleView addSubview:isCollectionImageView];
     isCollectionImageView.userInteractionEnabled = YES;
@@ -457,9 +457,9 @@
     
     
     UIButton *closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    closeBtn.frame = CGRectMake(15, 15, 20, 20);
+    closeBtn.frame = CGRectMake(15, 15, 14, 14);
     
-    [closeBtn setImage:[[UIImage imageNamed:@"cha-1"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
+    [closeBtn setImage:[[UIImage imageNamed:@"cha"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
     [closeBtn addTarget:self action:@selector(close:) forControlEvents:UIControlEventTouchUpInside];
     [infoView addSubview:closeBtn];
     
