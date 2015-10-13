@@ -98,6 +98,7 @@
         UILabel *lab = [[UILabel alloc]init];
         lab.frame = CGRectMake(25+200*col, 80+50*row, 200, 30);
         lab.text = [listData objectAtIndex:i];
+        lab.textColor = [UIColor colorWithRed:0x9f/255.0 green:0xa0/255.0 blue:0xa0/255.0 alpha:1.0f];
         [view addSubview:lab];
         lab.userInteractionEnabled = YES;
         UITapGestureRecognizer *tapGestureTel = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(labelTouch:)];
@@ -111,12 +112,24 @@
 -(void)labelTouch:(UIGestureRecognizer*)gestureRecognizer
 {
     UILabel *lab=(UILabel*)gestureRecognizer.view;
-    NSLog(@"%@",lab.text);
-    //searchinfo
+
+    NSString *historyString = lab.text;
+    
+    if (hisArray.count <= 12) {
+        [hisArray insertObject:historyString atIndex:0];
+    }
+    else
+    {
+        [hisArray replaceObjectAtIndex:0 withObject:historyString];
+    }
+    [self writeToPlist:@"history.plist" data:hisArray];
+    [self drawListView:self.historyView title:@"搜索历史" delete:YES list:hisArray];
+
     [self performSegueWithIdentifier:@"searchinfo" sender:self];
 }
 
 #pragma mark 删除历史记录
+
 -(void)deleteHistorySearch:(id)sender
 {
     UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"删除搜索历史" message:@"确定删除搜索历史？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];

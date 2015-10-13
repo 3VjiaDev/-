@@ -19,6 +19,17 @@
     NSMutableArray *addrAry;
     NSMutableArray *styleAry;
     NSMutableArray *markAry;
+    
+    
+    UIView *addView;
+    UIButton *addButton;
+    
+    NSString *addName;
+    NSString *addSex;
+    NSString *addPhone;
+    NSString *addr;
+    NSString *addMark;
+    NSMutableArray *addStyleAry;
 }
 
 @property (weak, nonatomic) IBOutlet UITableView *customerTable;
@@ -32,6 +43,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
     [self getCustomerList];
     nameAry = [[NSMutableArray alloc]init];
     IDAry = [[NSMutableArray alloc]init];
@@ -48,8 +60,8 @@
     // Dispose of any resources that can be recreated.
 }
 
-
 - (IBAction)addClient:(id)sender {
+    [self addUserView];
 }
 #pragma mark 获取客户列表
 /*
@@ -268,5 +280,144 @@
         [view addSubview:lab];
     }
 }
+-(void)addUserView
+{
+    addView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    addView.backgroundColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.2f];
+    [self.view addSubview:addView];
+    
+    float xpoint = (self.view.frame.size.width - 325)/2;
+    float ypoint = (self.view.frame.size.height - 440)/2;
+    
+    UIView *infoView = [[UIView alloc]initWithFrame:CGRectMake(xpoint, ypoint, 325, 440)];
+    infoView.backgroundColor = [[UIColor whiteColor]colorWithAlphaComponent:1.0f];
+    [addView addSubview:infoView];
+    
+    UIView *titleView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, infoView.frame.size.width, 30)];
+    titleView.backgroundColor = [UIColor colorWithRed:239/255.0 green:142/255.0 blue:61/255.0 alpha:1.0f];
+    [infoView addSubview:titleView];
+    
+    UIImageView *titleIV = [[UIImageView alloc]initWithFrame:CGRectMake(15, 10, 15, 15)];
+    titleIV.image = [UIImage imageNamed:nil];
+    [titleView addSubview:titleIV];
+    
+    UILabel *titleLab = [[UILabel alloc]initWithFrame:CGRectMake(40, 5, 100, 20)];
+    titleLab.text = @"添加客户";
+    titleLab.textColor = [UIColor whiteColor];
+    titleLab.font = [UIFont systemFontOfSize:15.0f];
+    [titleView addSubview:titleLab];
+    
+    UIButton *closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    closeBtn.frame = CGRectMake(titleView.frame.size.width - 30, 5, 20, 20);
+    
+    [closeBtn setImage:[[UIImage imageNamed:@"cha-1"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
+    [closeBtn addTarget:self action:@selector(close:) forControlEvents:UIControlEventTouchUpInside];
+    [titleView addSubview:closeBtn];
+    
+    UIView *baseView = [[UIView alloc]initWithFrame:CGRectMake(10, 40, infoView.frame.size.width-20, 79)];
+    baseView.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    [infoView addSubview:baseView];
+    
+    UIView *nameView = [[UIView alloc]initWithFrame:CGRectMake(1, 1, infoView.frame.size.width-22, 25)];
+    nameView.backgroundColor =[UIColor whiteColor];
+    [baseView addSubview:nameView];
+    
+    UILabel *nameLab = [[UILabel alloc]initWithFrame:CGRectMake(10, 2.5, 50, 20)];
+    nameLab.text = @"姓名";
+    nameLab.font = [UIFont systemFontOfSize:12.0f];
+    [nameView addSubview:nameLab];
+    
+    UITextField *nameField = [[UITextField alloc]initWithFrame:CGRectMake(50, 2.5, 250, 20)];
+    nameField.borderStyle = UITextBorderStyleNone;
+    nameField.font = [UIFont systemFontOfSize:12.0f];
+    [nameView addSubview:nameField];
+    
+    UIView *sexView = [[UIView alloc]initWithFrame:CGRectMake(1, 27, infoView.frame.size.width-22, 25)];
+    sexView.backgroundColor =[UIColor whiteColor];
+    [baseView addSubview:sexView];
+    UILabel *sexLab = [[UILabel alloc]initWithFrame:CGRectMake(10, 2.5, 50, 20)];
+    sexLab.text = @"性别";
+    sexLab.font = [UIFont systemFontOfSize:12.0f];
+    [sexView addSubview:sexLab];
+    
+    UIView *phoneView = [[UIView alloc]initWithFrame:CGRectMake(1, 53, infoView.frame.size.width-22, 25)];
+    phoneView.backgroundColor =[UIColor whiteColor];
+    [baseView addSubview:phoneView];
+    UILabel *phoneLab = [[UILabel alloc]initWithFrame:CGRectMake(10, 2.5, 50, 20)];
+    phoneLab.text = @"号码";
+    phoneLab.font = [UIFont systemFontOfSize:12.0f];
+    [phoneView addSubview:phoneLab];
+    
+    UITextField *phoneField = [[UITextField alloc]initWithFrame:CGRectMake(50, 2.5, 250, 20)];
+    phoneField.borderStyle = UITextBorderStyleNone;
+    phoneField.font = [UIFont systemFontOfSize:12.0f];
+    [phoneView addSubview:phoneField];
 
+    
+    UIView *base1View = [[UIView alloc]initWithFrame:CGRectMake(10, 130, infoView.frame.size.width-20, 75)];
+    base1View.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    [infoView addSubview:base1View];
+    UIView *addressView = [[UIView alloc]initWithFrame:CGRectMake(1, 1, infoView.frame.size.width-22, 73)];
+    addressView.backgroundColor = [UIColor whiteColor];
+    [base1View addSubview:addressView];
+    UILabel *addLab = [[UILabel alloc]initWithFrame:CGRectMake(10, 2.5, 50, 20)];
+    addLab.text = @"地址";
+    addLab.font = [UIFont systemFontOfSize:12.0f];
+    [addressView addSubview:addLab];
+    UITextView *addTextView = [[UITextView alloc]initWithFrame:CGRectMake(50, 2.5, addressView.frame.size.width-60, 60)];
+    addTextView.font = [UIFont systemFontOfSize:12.0f];
+    [addressView addSubview:addTextView];
+    
+    UIView *base2View = [[UIView alloc]initWithFrame:CGRectMake(10, 215, infoView.frame.size.width-20, 75)];
+    base2View.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    [infoView addSubview:base2View];
+    UIView *markView = [[UIView alloc]initWithFrame:CGRectMake(1, 1, infoView.frame.size.width-22, 73)];
+    markView.backgroundColor = [UIColor whiteColor];
+    [base2View addSubview:markView];
+    UILabel *markLab = [[UILabel alloc]initWithFrame:CGRectMake(10, 2.5, 50, 20)];
+    markLab.text = @"备注";
+    markLab.font = [UIFont systemFontOfSize:12.0f];
+    [markView addSubview:markLab];
+    UITextView *markTextView = [[UITextView alloc]initWithFrame:CGRectMake(50, 2.5, addressView.frame.size.width-60, 60)];
+    markTextView.font = [UIFont systemFontOfSize:12.0f];
+    [markView addSubview:markTextView];
+    
+    UILabel *styleLab = [[UILabel alloc]initWithFrame:CGRectMake(10, 300, 200, 20)];
+    styleLab.text = @"喜欢装修风格（可多选）";
+    styleLab.font = [UIFont systemFontOfSize:13.0f];
+    [infoView addSubview:styleLab];
+    
+    UIView *base3View = [[UIView alloc]initWithFrame:CGRectMake(10, 330, infoView.frame.size.width-20, 60)];
+    base3View.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    [infoView addSubview:base3View];
+    
+    addButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    addButton.frame = CGRectMake(15, 400, 295, 30);
+    
+    //[closeBtn setImage:[[UIImage imageNamed:@"delete_img"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
+    [addButton setTitle:@"完成保存" forState:UIControlStateNormal];
+    [addButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    addButton.backgroundColor = [UIColor colorWithRed:239/255.0 green:142/255.0 blue:61/255.0 alpha:1.0f];
+    [addButton addTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
+    [infoView addSubview:addButton];
+    [addButton.layer setMasksToBounds:YES];
+    [addButton.layer setCornerRadius:5.0]; //设置矩形四个圆角半径
+    [addButton.layer setBorderWidth:1.0]; //边框宽度
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    CGColorRef colorref = CGColorCreate(colorSpace,(CGFloat[]){ 239/255.0, 142/255.0, 61/255.0, 1 });
+    [addButton.layer setBorderColor:colorref];//边框颜色
+
+}
+
+-(void)close:(id)sender
+{
+    [UIView animateWithDuration:0.3
+                     animations:^{
+                         addView.alpha = 0.0f;
+                     }
+                     completion:^(BOOL finished){
+                         [addView removeFromSuperview];
+                     }];
+
+}
 @end

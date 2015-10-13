@@ -21,10 +21,16 @@
     NSMutableArray *qjtIDArray;
     NSMutableArray *qjtNameArray;
     NSMutableArray *qjtImageArray;
+    
+    BOOL isSelect;
+    UIView *seleceView;
+    
+    UIView *styleView;
+    UIView *areaView;
+    UIView *spaceView;
 }
 //改变类型
 - (IBAction)changeStyle:(id)sender;
-
 //客户信息
 - (IBAction)userInformation:(id)sender;
 //搜索
@@ -32,6 +38,8 @@
 //筛选
 - (IBAction)select:(id)sender;
 
+//筛选按钮
+@property (weak, nonatomic) IBOutlet UIButton *selectButton;
 //头像
 @property (weak, nonatomic) IBOutlet UIImageView *faceImage;
 
@@ -63,98 +71,6 @@
    
 }
 
--(void)imageViewTouch:(UIGestureRecognizer*)gestureRecognizer
-{
-
-    examineView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-    
-    [self.view addSubview:examineView];
-    examineView.backgroundColor = [UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:0.3f];
-   
-    float xpoint = (self.view.frame.size.width - 325)/2;
-    float ypoint = (self.view.frame.size.height - 350)/2;
-    
-    UIView *infoView = [[UIView alloc]initWithFrame:CGRectMake(xpoint, ypoint, 325, 350)];
-    infoView.backgroundColor = [[UIColor whiteColor]colorWithAlphaComponent:1.0f];
-    [examineView addSubview:infoView];
-    
-    
-    UIButton *closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    closeBtn.frame = CGRectMake(15, 15, 20, 20);
-    
-    [closeBtn setImage:[[UIImage imageNamed:@"cha-1"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
-    //[closeBtn setTitle:@"X" forState:UIControlStateNormal];
-    //[closeBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [closeBtn addTarget:self action:@selector(close:) forControlEvents:UIControlEventTouchUpInside];
-    [infoView addSubview:closeBtn];
-    
-    
-    UIImageView *face = [[UIImageView alloc]initWithFrame:CGRectMake(132.5, 50, 60, 60)];
-    face.image = self.faceImage.image;
-    [infoView addSubview:face];
-    
-    UILabel *nameLab = [[UILabel alloc]initWithFrame:CGRectMake(15, 120, 295, 20)];
-    nameLab.text = @"曲美家具";
-    nameLab.textAlignment = NSTextAlignmentCenter;
-    nameLab.font = [UIFont systemFontOfSize:15];
-    [infoView addSubview:nameLab];
-    
-    UILabel *versionLab1 = [[UILabel alloc]initWithFrame:CGRectMake(15, 240, 100, 20)];
-    versionLab1.text = @"当前版本";
-    versionLab1.font = [UIFont systemFontOfSize:12.0f];
-    [infoView addSubview:versionLab1];
-    
-    UILabel *versionLab2 = [[UILabel alloc]initWithFrame:CGRectMake(195, 240, 100, 20)];
-    versionLab2.text = @"V1.0";
-    versionLab2.font = [UIFont systemFontOfSize:12.0f];
-    versionLab2.textAlignment = NSTextAlignmentRight;
-    [infoView addSubview:versionLab2];
-    
-    UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(15, 275, 295, 1)];
-    lineView.backgroundColor = [UIColor groupTableViewBackgroundColor];
-    [infoView addSubview:lineView];
-    
-    UIButton *loginoutBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    loginoutBtn.frame = CGRectMake(15, 300, 295, 30);
-    
-    //[closeBtn setImage:[[UIImage imageNamed:@"delete_img"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
-    [loginoutBtn setTitle:@"退出当前账号" forState:UIControlStateNormal];
-    [loginoutBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    loginoutBtn.backgroundColor = [UIColor colorWithRed:239/255.0 green:142/255.0 blue:61/255.0 alpha:1.0f];
-    [loginoutBtn addTarget:self action:@selector(loginOut:) forControlEvents:UIControlEventTouchUpInside];
-    [infoView addSubview:loginoutBtn];
-    [loginoutBtn.layer setMasksToBounds:YES];
-    [loginoutBtn.layer setCornerRadius:5.0]; //设置矩形四个圆角半径
-    [loginoutBtn.layer setBorderWidth:1.0]; //边框宽度
-    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    CGColorRef colorref = CGColorCreate(colorSpace,(CGFloat[]){ 239/255.0, 142/255.0, 61/255.0, 1 });
-    [loginoutBtn.layer setBorderColor:colorref];//边框颜色
-
-}
--(void)close:(id)sender
-{
-    [UIView animateWithDuration:0.3
-                     animations:^{
-                         examineView.alpha = 0.0f;
-                     }
-                     completion:^(BOOL finished){
-                         [examineView removeFromSuperview];
-                     }];
-}
-
--(void)loginOut:(id)sender
-{
-    //loginout
-    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"退出登录" message:@"确定退出当前账号？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-    [alert show];
-    
-}
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex == 1) {
-        [self performSegueWithIdentifier:@"loginout" sender:self];
-    }
-}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -168,10 +84,49 @@
 }
 
 - (IBAction)search:(id)sender {
+   
 }
 
 - (IBAction)select:(id)sender {
+    if (!isSelect) {
+        isSelect = !isSelect;
+        [self.selectButton setImage:[[UIImage imageNamed:@"shaixuan-dianji"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
+        [self selectView];
+        float ypoint = qjtTableView.frame.origin.y+95;
+        qjtTableView.frame = CGRectMake(0, ypoint, self.view.frame.size.width, self.view.frame.size.height-195);
+    }
+    else
+    {
+        isSelect = !isSelect;
+        [self.selectButton setImage:[[UIImage imageNamed:@"shaixuan-weidianji"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
+        float ypoint = qjtTableView.frame.origin.y-95;
+        qjtTableView.frame = CGRectMake(0, ypoint, self.view.frame.size.width, self.view.frame.size.height-100);
+        [seleceView removeFromSuperview];
+    }
 }
+-(void)selectView
+{
+    seleceView = [[UIView alloc]initWithFrame:CGRectMake(0, 82, self.view.frame.size.width, 90)];
+    seleceView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:seleceView];
+    
+    styleView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, (seleceView.frame.size.width)/3, seleceView.frame.size.width)];
+    NSMutableArray *a = [[NSMutableArray alloc]initWithObjects:@"全部",@"北欧现代",@"现代",@"欧式",@"中式",@"美式",@"韩式田园",@"地中海", nil];
+    [self drawSelectView:styleView title:@"风格" list:a labTag:0];
+    [seleceView addSubview:styleView];
+    
+    areaView = [[UIView alloc]initWithFrame:CGRectMake((seleceView.frame.size.width)/3, 0, (seleceView.frame.size.width)/3, seleceView.frame.size.width)];
+    
+    [self drawSelectView:areaView title:@"面积" list:a labTag:1];
+    [seleceView addSubview:areaView];
+    
+    spaceView = [[UIView alloc]initWithFrame:CGRectMake((2*seleceView.frame.size.width)/3, 0, (seleceView.frame.size.width)/3, seleceView.frame.size.width)];
+    
+    [self drawSelectView:spaceView title:@"空间" list:a labTag:2];
+    [seleceView addSubview:spaceView];
+    
+}
+
 #pragma mark tableViewDelegate
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -190,13 +145,14 @@
     if (qjtImageArray.count <= 0) {
         return 0;
     }
+    else if (qjtImageArray.count%3 !=  0)
+    {
+        return (qjtImageArray.count/3)+1;
+    }
     else
-        return (qjtImageArray.count/3)+1 ;
+        return (qjtImageArray.count/3) ;
 }
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
+
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"cell";
@@ -330,7 +286,6 @@
 {
     UIView *view  =(UIView*)gestureRecognizer.view;
     
-    NSLog(@"%d",view.tag);
     qjtSingleton *single = [qjtSingleton initQJTSingleton];
     single.qjtName = [qjtNameArray objectAtIndex:view.tag];
     single.qjtId = [qjtIDArray objectAtIndex:view.tag];
@@ -391,7 +346,7 @@
     NSString *authCode =[Tool readAuthCodeString];
     
     NSArray *key = @[@"authCode",@"pageSize",@"pageIndex"];
-    NSArray *object = @[authCode,@"10",pageIndex];
+    NSArray *object = @[authCode,@"9",pageIndex];
     
     NSString *param=[NSString stringWithFormat:@"Params=%@&Command=ShopManager/GetQJTList",[Tool param:object forKey:key]];
     NSLog(@"http://passport.admin.3weijia.com/mnmnhwap.axd?%@",param);
@@ -399,6 +354,181 @@
     request.HTTPBody=[param dataUsingEncoding:NSUTF8StringEncoding];
     
     return request;
+}
+#pragma mark 搜索分类
+
+-(void)drawSelectView:(UIView*)view title:(NSString*)title  list:(NSMutableArray*)listData labTag:(int)tag
+{
+    UILabel *titleLab = [[UILabel alloc]initWithFrame:CGRectMake(25, 10, 100, 20)];
+    titleLab.text = title;
+    titleLab.font = [UIFont systemFontOfSize:15];
+    [view addSubview:titleLab];
+    
+    UIView *lineView1 = [[UIView alloc]initWithFrame:CGRectMake(25, 34, 50, 1)];
+    lineView1.backgroundColor = [UIColor colorWithRed:239/255.0 green:142/255.0 blue:61/255.0 alpha:1.0f];
+    [view addSubview:lineView1];
+    
+    UIView *lineView2 = [[UIView alloc]initWithFrame:CGRectMake(75, 34, 200, 1)];
+    lineView2.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    [view addSubview:lineView2];
+    
+    for (int i = 0; i < listData.count; i++) {
+        if (i >= 8) {
+            return;
+        }
+        int row = i/4;
+        int col = i%4;
+        
+        UILabel *lab = [[UILabel alloc]init];
+        lab.frame = CGRectMake(25+60*col, 40+25*row, 60, 20);
+        lab.tag = tag;
+        lab.text = [listData objectAtIndex:i];
+        if (i == 0) {
+            lab.textColor = [UIColor colorWithRed:239/255.0 green:142/255.0 blue:61/255.0 alpha:1.0f];
+        }
+        lab.font = [UIFont systemFontOfSize:12.0f];
+        if (col == 0) {
+            lab.textAlignment = NSTextAlignmentLeft;
+        }
+        else if (col == 3) {
+            lab.textAlignment = NSTextAlignmentRight;
+        }
+        else
+            lab.textAlignment = NSTextAlignmentCenter;
+
+        [view addSubview:lab];
+        
+        lab.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tapGestureTel = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(labelTouch:)];
+        
+        [lab addGestureRecognizer:tapGestureTel];
+
+    }
+}
+-(void)labelTouch:(UIGestureRecognizer*)gestureRecognizer
+{
+    UILabel *lab=(UILabel*)gestureRecognizer.view;
+    if (lab.tag == 0) {
+        [self setLabelColor:styleView string:lab.text];
+    }
+    else if (lab.tag == 1)
+    {
+        [self setLabelColor:areaView string:lab.text];
+    }
+    else
+    {
+        [self setLabelColor:spaceView string:lab.text];
+    }
+}
+
+-(void)setLabelColor:(UIView*)view string:(NSString*)string
+{
+    for (id obj in [view subviews]) {
+        if ([obj isKindOfClass:[UILabel class]]) {
+            UILabel *label = (UILabel*)obj;
+            
+            if ([label.text isEqualToString:string]) {
+                label.textColor = [UIColor colorWithRed:239/255.0 green:142/255.0 blue:61/255.0 alpha:1.0f];
+            }
+            else
+            {
+                label.textColor = [UIColor blackColor];
+            }
+        }
+    }
+}
+
+#pragma mark 个人信息设置
+
+-(void)imageViewTouch:(UIGestureRecognizer*)gestureRecognizer
+{
+    
+    examineView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    
+    [self.view addSubview:examineView];
+    examineView.backgroundColor = [UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:0.3f];
+    
+    float xpoint = (self.view.frame.size.width - 325)/2;
+    float ypoint = (self.view.frame.size.height - 350)/2;
+    
+    UIView *infoView = [[UIView alloc]initWithFrame:CGRectMake(xpoint, ypoint, 325, 350)];
+    infoView.backgroundColor = [[UIColor whiteColor]colorWithAlphaComponent:1.0f];
+    [examineView addSubview:infoView];
+    
+    
+    UIButton *closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    closeBtn.frame = CGRectMake(15, 15, 20, 20);
+    
+    [closeBtn setImage:[[UIImage imageNamed:@"cha-1"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
+    [closeBtn addTarget:self action:@selector(close:) forControlEvents:UIControlEventTouchUpInside];
+    [infoView addSubview:closeBtn];
+    
+    
+    UIImageView *face = [[UIImageView alloc]initWithFrame:CGRectMake(132.5, 50, 60, 60)];
+    face.image = self.faceImage.image;
+    [infoView addSubview:face];
+    
+    UILabel *nameLab = [[UILabel alloc]initWithFrame:CGRectMake(15, 120, 295, 20)];
+    nameLab.text = @"曲美家具";
+    nameLab.textAlignment = NSTextAlignmentCenter;
+    nameLab.font = [UIFont systemFontOfSize:15];
+    [infoView addSubview:nameLab];
+    
+    UILabel *versionLab1 = [[UILabel alloc]initWithFrame:CGRectMake(15, 240, 100, 20)];
+    versionLab1.text = @"当前版本";
+    versionLab1.font = [UIFont systemFontOfSize:12.0f];
+    [infoView addSubview:versionLab1];
+    
+    UILabel *versionLab2 = [[UILabel alloc]initWithFrame:CGRectMake(195, 240, 100, 20)];
+    versionLab2.text = @"V1.0";
+    versionLab2.font = [UIFont systemFontOfSize:12.0f];
+    versionLab2.textAlignment = NSTextAlignmentRight;
+    [infoView addSubview:versionLab2];
+    
+    UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(15, 275, 295, 1)];
+    lineView.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    [infoView addSubview:lineView];
+    
+    UIButton *loginoutBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    loginoutBtn.frame = CGRectMake(15, 300, 295, 30);
+    
+    //[closeBtn setImage:[[UIImage imageNamed:@"delete_img"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
+    [loginoutBtn setTitle:@"退出当前账号" forState:UIControlStateNormal];
+    [loginoutBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    loginoutBtn.backgroundColor = [UIColor colorWithRed:239/255.0 green:142/255.0 blue:61/255.0 alpha:1.0f];
+    [loginoutBtn addTarget:self action:@selector(loginOut:) forControlEvents:UIControlEventTouchUpInside];
+    [infoView addSubview:loginoutBtn];
+    [loginoutBtn.layer setMasksToBounds:YES];
+    [loginoutBtn.layer setCornerRadius:5.0]; //设置矩形四个圆角半径
+    [loginoutBtn.layer setBorderWidth:1.0]; //边框宽度
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    CGColorRef colorref = CGColorCreate(colorSpace,(CGFloat[]){ 239/255.0, 142/255.0, 61/255.0, 1 });
+    [loginoutBtn.layer setBorderColor:colorref];//边框颜色
+    
+}
+-(void)close:(id)sender
+{
+    [UIView animateWithDuration:0.3
+                     animations:^{
+                         examineView.alpha = 0.0f;
+                     }
+                     completion:^(BOOL finished){
+                         [examineView removeFromSuperview];
+                     }];
+}
+
+-(void)loginOut:(id)sender
+{
+    //loginout
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"退出登录" message:@"确定退出当前账号？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    [alert show];
+    
+}
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+        [self performSegueWithIdentifier:@"loginout" sender:self];
+    }
 }
 
 @end

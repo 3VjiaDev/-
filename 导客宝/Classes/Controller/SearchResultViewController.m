@@ -29,18 +29,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
-
-
 #pragma mark tableViewDelegate
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -63,12 +51,13 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         tableView.separatorStyle = NO;
         for (int i = 0; i < 3; i++) {
-            UIView *view = [self qjtDraw:CGRectMake(10+340*i, 5, 325, 240) qjtImage:[UIImage imageNamed:@"背景"] title:@"ddddddddd" isCollect:YES];
+            UIView *view = [self qjtDraw:CGRectMake(10+340*i, 5, 325, 240) qjtImage:[UIImage imageNamed:@"jiazaipic"] title:@"ddddddddd" isCollect:YES];
             [cell.contentView addSubview:view];
         }
     }
     return cell;
 }
+
 #pragma mark 全景图展示
 
 -(UIView *)qjtDraw:(CGRect)rect qjtImage:(UIImage*)qjtImage title:(NSString*)qjtTitle isCollect:(BOOL)isCollect
@@ -113,7 +102,7 @@
 {
     UIView *view  =(UIView*)gestureRecognizer.view;
     
-    NSLog(@"%d",view.tag);
+    NSLog(@"%ld",(long)view.tag);
     //qjtInfo
    // [self performSegueWithIdentifier:@"qjtinfo" sender:self];
 }

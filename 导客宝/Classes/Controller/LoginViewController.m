@@ -11,18 +11,33 @@
 #import "singleton.h"
 
 @interface LoginViewController ()<UITextFieldDelegate>
+
 {
     BOOL isLogin;//防止登录按钮多次点击
 }
-
 //登录
-
 - (IBAction)login:(id)sender;
-
 @end
 
 @implementation LoginViewController
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    
+    self.phoneTextfield.text = @"qeknio";
+    self.pwdTextField.text = @"123123";
+    
+    [self initLoginBtn];
+    
+}
+
+#pragma mark 登录按钮设置
+
+//外观设置
 -(void)initLoginBtn
 {
     [self.loginButton setTintColor:[UIColor whiteColor]];
@@ -32,26 +47,14 @@
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
     CGColorRef colorref = CGColorCreate(colorSpace,(CGFloat[]){ 239/255.0, 142/255.0, 61/255.0, 1 });
     [self.loginButton.layer setBorderColor:colorref];//边框颜色
-
-}
-
-- (void)viewDidLoad {
-    NSLog(@"%d%d",10/3,10%3);
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    self.phoneTextfield.text = @"qeknio";
-    self.pwdTextField.text = @"123123";
-    //UIKeyboardWillShowNotification
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-    
-    [self initLoginBtn];
     
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+//登录状态
+-(void)loginState:(NSString*)title
+{
+    isLogin = !isLogin;
+    [self.loginButton setTitle:title forState:UIControlStateNormal];
 }
 
 #pragma mark 用户登录
@@ -75,6 +78,7 @@
         [self loginState:@"登录"];
         return;
     }
+    
     [NSURLConnection sendAsynchronousRequest:[self request:name password:pwd]
                                        queue:[NSOperationQueue mainQueue]
                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError)
@@ -121,6 +125,7 @@
          }
      }];
 }
+
 /*
  功能：用户登录网络请求
  输入：name：账号 pwd：密码
@@ -147,11 +152,6 @@
     return request;
 }
 
--(void)loginState:(NSString*)title
-{
-    isLogin = !isLogin;
-    [self.loginButton setTitle:title forState:UIControlStateNormal];
-}
 
 #pragma mark textfielddelegate
 
@@ -193,6 +193,9 @@
     [UIView commitAnimations];
 }
 
+#pragma mark 键盘响应函数
+
+//键盘消失
 - (void)keyboardWillHide:(NSNotification *)notification {
     NSTimeInterval animationDuration = 0.30f;
     [UIView beginAnimations:@"ResizeForKeyboard" context:nil];
@@ -201,6 +204,7 @@
     [UIView commitAnimations];
 }
 
+//键盘显示
 -(void)keyboardWillShow:(NSNotification *)notification
 {
 
@@ -217,5 +221,10 @@
     
     [UIView commitAnimations];
 
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 @end

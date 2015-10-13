@@ -18,7 +18,7 @@
  */
 + (NSString *)requestURL
 {
-    //mnmnh
+    //mnmnh 3weijia
     return @"http://passport.admin.3weijia.com/mnmnhwap.axd";
 }
 
