@@ -10,8 +10,9 @@
 #import "UserViewController.h"
 #import "Tool.h"
 #import "singleton.h"
+#import "QRadioButton.h"
 
-@interface UserViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface UserViewController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UITextViewDelegate,QRadioButtonDelegate>
 {
     NSMutableArray *nameAry;
     NSMutableArray *IDAry;
@@ -24,11 +25,11 @@
     UIView *addView;
     UIButton *addButton;
     
-    NSString *addName;
+    UITextField *addName;
     NSString *addSex;
-    NSString *addPhone;
-    NSString *addr;
-    NSString *addMark;
+    UITextField *addPhone;
+    UITextView *addr;
+    UITextView *addMark;
     NSMutableArray *addStyleAry;
 }
 
@@ -139,7 +140,7 @@
 
 -(void)addCustomer
 {
-    [NSURLConnection sendAsynchronousRequest:[self addCustomer:@"li" sex:@"女" phone:@"13623658965" address:@"tianheruanjian" mark:@"12211" style:@[@"11",@"12"]]
+    [NSURLConnection sendAsynchronousRequest:[self addCustomer:addName.text sex:addSex phone:addPhone.text address:addr.text mark:addMark.text style:@[@"11",@"12"]]
                                        queue:[NSOperationQueue mainQueue]
                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError)
      {
@@ -155,12 +156,25 @@
              NSString *Json = [dic objectForKey:@"JSON"];
              if (Json != nil) {
                  //添加客户成功
-                 NSLog(@"1");
+                 [UIView animateWithDuration:0.3
+                                  animations:^{
+                                      addView.alpha = 0.0f;
+                                  }
+                                  completion:^(BOOL finished){
+                                      [addView removeFromSuperview];
+                                  }];
              }
              else
              {
                  //添加客户失败
-                 NSLog(@"2");
+                 [UIView animateWithDuration:0.3
+                                  animations:^{
+                                      addView.alpha = 0.0f;
+                                  }
+                                  completion:^(BOOL finished){
+                                      [addView removeFromSuperview];
+                                  }];
+                 [Tool showAlert:@"添加失败" message:@"添加客户失败"];
              }
          }
      }];
@@ -327,10 +341,10 @@
     nameLab.font = [UIFont systemFontOfSize:12.0f];
     [nameView addSubview:nameLab];
     
-    UITextField *nameField = [[UITextField alloc]initWithFrame:CGRectMake(50, 2.5, 250, 20)];
-    nameField.borderStyle = UITextBorderStyleNone;
-    nameField.font = [UIFont systemFontOfSize:12.0f];
-    [nameView addSubview:nameField];
+    addName = [[UITextField alloc]initWithFrame:CGRectMake(50, 2.5, 250, 20)];
+    addName.borderStyle = UITextBorderStyleNone;
+    addName.font = [UIFont systemFontOfSize:12.0f];
+    [nameView addSubview:addName];
     
     UIView *sexView = [[UIView alloc]initWithFrame:CGRectMake(1, 27, infoView.frame.size.width-22, 25)];
     sexView.backgroundColor =[UIColor whiteColor];
@@ -339,7 +353,17 @@
     sexLab.text = @"性别";
     sexLab.font = [UIFont systemFontOfSize:12.0f];
     [sexView addSubview:sexLab];
-    
+    for(int i = 0;i< 2;i++)
+    {
+        QRadioButton *radio = [[QRadioButton alloc]initWithDelegate:self groupId:@"remaind"];
+        radio.frame = CGRectMake(60+50*i, 2.5, 50, 20);
+        [radio setTitle:(i == 0)?@"男":@"女" forState:UIControlStateNormal];
+        [radio setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [radio.titleLabel setFont:[UIFont boldSystemFontOfSize:13.0f]];
+        [sexView addSubview:radio];
+        [radio setChecked:YES];
+    }
+        
     UIView *phoneView = [[UIView alloc]initWithFrame:CGRectMake(1, 53, infoView.frame.size.width-22, 25)];
     phoneView.backgroundColor =[UIColor whiteColor];
     [baseView addSubview:phoneView];
@@ -348,10 +372,10 @@
     phoneLab.font = [UIFont systemFontOfSize:12.0f];
     [phoneView addSubview:phoneLab];
     
-    UITextField *phoneField = [[UITextField alloc]initWithFrame:CGRectMake(50, 2.5, 250, 20)];
-    phoneField.borderStyle = UITextBorderStyleNone;
-    phoneField.font = [UIFont systemFontOfSize:12.0f];
-    [phoneView addSubview:phoneField];
+    addPhone = [[UITextField alloc]initWithFrame:CGRectMake(50, 2.5, 250, 20)];
+    addPhone.borderStyle = UITextBorderStyleNone;
+    addPhone.font = [UIFont systemFontOfSize:12.0f];
+    [phoneView addSubview:addPhone];
 
     
     UIView *base1View = [[UIView alloc]initWithFrame:CGRectMake(10, 130, infoView.frame.size.width-20, 75)];
@@ -364,9 +388,10 @@
     addLab.text = @"地址";
     addLab.font = [UIFont systemFontOfSize:12.0f];
     [addressView addSubview:addLab];
-    UITextView *addTextView = [[UITextView alloc]initWithFrame:CGRectMake(50, 2.5, addressView.frame.size.width-60, 60)];
-    addTextView.font = [UIFont systemFontOfSize:12.0f];
-    [addressView addSubview:addTextView];
+    addr = [[UITextView alloc]initWithFrame:CGRectMake(50, 2.5, addressView.frame.size.width-60, 60)];
+    addr.font = [UIFont systemFontOfSize:12.0f];
+    addr.delegate = self;
+    [addressView addSubview:addr];
     
     UIView *base2View = [[UIView alloc]initWithFrame:CGRectMake(10, 215, infoView.frame.size.width-20, 75)];
     base2View.backgroundColor = [UIColor groupTableViewBackgroundColor];
@@ -378,9 +403,10 @@
     markLab.text = @"备注";
     markLab.font = [UIFont systemFontOfSize:12.0f];
     [markView addSubview:markLab];
-    UITextView *markTextView = [[UITextView alloc]initWithFrame:CGRectMake(50, 2.5, addressView.frame.size.width-60, 60)];
-    markTextView.font = [UIFont systemFontOfSize:12.0f];
-    [markView addSubview:markTextView];
+    addMark  = [[UITextView alloc]initWithFrame:CGRectMake(50, 2.5, addressView.frame.size.width-60, 60)];
+    addMark.font = [UIFont systemFontOfSize:12.0f];
+    addMark.delegate = self;
+    [markView addSubview:addMark];
     
     UILabel *styleLab = [[UILabel alloc]initWithFrame:CGRectMake(10, 300, 200, 20)];
     styleLab.text = @"喜欢装修风格（可多选）";
@@ -398,7 +424,7 @@
     [addButton setTitle:@"完成保存" forState:UIControlStateNormal];
     [addButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     addButton.backgroundColor = [UIColor colorWithRed:239/255.0 green:142/255.0 blue:61/255.0 alpha:1.0f];
-    [addButton addTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
+    [addButton addTarget:self action:@selector(addButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     [infoView addSubview:addButton];
     [addButton.layer setMasksToBounds:YES];
     [addButton.layer setCornerRadius:5.0]; //设置矩形四个圆角半径
@@ -419,5 +445,48 @@
                          [addView removeFromSuperview];
                      }];
 
+}
+-(void)didSelectedRadioButton:(QRadioButton *)radio groupId:(NSString *)groupId
+{
+    if([radio.titleLabel.text isEqualToString:@"男"])
+    {
+        addSex = @"男";
+    }
+    else
+    {
+        addSex = @"女";
+    }
+}
+-(void)addButtonAction:(id)sender
+{
+    UIButton *button = (UIButton*)sender;
+    NSLog(@"%@",button.titleLabel.text);
+    if ([button.titleLabel.text isEqualToString:@"正在保存..."]) {
+        return;
+    }
+    NSLog(@"name = %@",addName.text);
+    if((addName.text.length<=0)||(addPhone.text.length<=0)||(addr.text.length<=0)||(addMark.text.length<=0))
+    {
+        [Tool showAlert:@"用户信息不完整" message:@"请完善用户信息"];
+        return;
+    }
+    [button setTitle:@"正在保存..." forState:UIControlStateNormal];
+    [self addCustomer];
+}
+
+-(void)textViewDidBeginEditing:(UITextView *)textView
+{
+    int pointY = 336;
+    int offset = pointY + 100 - (addView.frame.size.height - 450);//键盘高度216
+    NSLog(@"%d",offset);
+    NSTimeInterval animationDuration = 0.30f;
+    [UIView beginAnimations:@"ResizeForKeyboard" context:nil];
+    [UIView setAnimationDuration:animationDuration];
+    
+    //将视图的Y坐标向上移动offset个单位，以使下面腾出地方用于软键盘的显示
+    if(offset > 0)
+        addView.frame = CGRectMake(0.0f, -offset, addView.frame.size.width, addView.frame.size.height);
+    
+    [UIView commitAnimations];
 }
 @end

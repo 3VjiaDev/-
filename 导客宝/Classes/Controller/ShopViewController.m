@@ -11,6 +11,7 @@
 #import "UIImageView+WebCache.h"
 #import "Tool.h"
 #import "qjtSingleton.h"
+#import "Popover.h"
 
 @interface ShopViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
@@ -28,6 +29,8 @@
     UIView *styleView;
     UIView *areaView;
     UIView *spaceView;
+    
+    UIPopoverController *popover;
 }
 //改变类型
 - (IBAction)changeStyle:(id)sender;
@@ -68,15 +71,42 @@
     qjtNameArray = [[NSMutableArray alloc]init];
     qjtImageArray = [[NSMutableArray alloc]init];
     [self GetQJTList];
+     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tongzhi:) name:@"tongzhi" object:nil];
    
 }
-
+- (void)tongzhi:(NSNotification *)text{
+    
+    NSLog(@"%@",text.userInfo[@"type"]);
+    if (popover) {
+        [popover dismissPopoverAnimated:NO];
+    }
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+#pragma mark typeDelegate
+-(void)selectType:(NSString *)type
+{
+    NSLog(@"type=%@",type);
+}
 - (IBAction)changeStyle:(id)sender {
+    UIButton *button = (UIButton*)sender;
+    Popover *qktb = [[Popover alloc]init];
+    qktb.view.backgroundColor = [UIColor yellowColor];
+    
+    // 创建一个UIPopover
+    
+    popover = [[UIPopoverController alloc]initWithContentViewController:qktb];
+    popover.backgroundColor = [UIColor yellowColor];
+    
+    // 设置尺寸
+    
+    popover.popoverContentSize = CGSizeMake(320, 80);
+    
+    // 从哪里出来
+    
+    [popover presentPopoverFromRect:button.frame inView:button.superview permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
 }
 
 - (IBAction)userInformation:(id)sender {
@@ -104,6 +134,7 @@
         [seleceView removeFromSuperview];
     }
 }
+
 -(void)selectView
 {
     seleceView = [[UIView alloc]initWithFrame:CGRectMake(0, 82, self.view.frame.size.width, 90)];
