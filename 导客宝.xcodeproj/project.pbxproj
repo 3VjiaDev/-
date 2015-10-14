@@ -22,6 +22,12 @@
 		2EFD34971BC2840200F02152 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2EFD34951BC2840200F02152 /* Main.storyboard */; };
 		2EFD34991BC2840200F02152 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2EFD34981BC2840200F02152 /* Images.xcassets */; };
 		2EFD34A81BC2840300F02152 /* ___Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EFD34A71BC2840300F02152 /* ___Tests.m */; };
+		9F3508E61BCDF10D003CE959 /* QRadioButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F3508E11BCDF10D003CE959 /* QRadioButton.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		9F3508E71BCDF10D003CE959 /* radio_checked.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F3508E21BCDF10D003CE959 /* radio_checked.png */; };
+		9F3508E81BCDF10D003CE959 /* radio_checked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F3508E31BCDF10D003CE959 /* radio_checked@2x.png */; };
+		9F3508E91BCDF10D003CE959 /* radio_unchecked.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F3508E41BCDF10D003CE959 /* radio_unchecked.png */; };
+		9F3508EA1BCDF10D003CE959 /* radio_unchecked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F3508E51BCDF10D003CE959 /* radio_unchecked@2x.png */; };
+		9F3508F01BCE0297003CE959 /* Popover.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F3508EF1BCE0297003CE959 /* Popover.m */; };
 		9F47BFB01BC756C600D92158 /* Tool.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F47BFAF1BC756C600D92158 /* Tool.m */; };
 		9F47BFB31BC7A5BF00D92158 /* singleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F47BFB21BC7A5BF00D92158 /* singleton.m */; };
 		9F5FE5001BCB44E100592124 /* QjtView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F5FE4FF1BCB44E100592124 /* QjtView.m */; };
@@ -83,6 +89,14 @@
 		2EFD34A11BC2840300F02152 /* 导客宝Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "导客宝Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EFD34A61BC2840300F02152 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2EFD34A71BC2840300F02152 /* ___Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "___Tests.m"; sourceTree = "<group>"; };
+		9F3508E01BCDF10D003CE959 /* QRadioButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRadioButton.h; sourceTree = "<group>"; };
+		9F3508E11BCDF10D003CE959 /* QRadioButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRadioButton.m; sourceTree = "<group>"; };
+		9F3508E21BCDF10D003CE959 /* radio_checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = radio_checked.png; sourceTree = "<group>"; };
+		9F3508E31BCDF10D003CE959 /* radio_checked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "radio_checked@2x.png"; sourceTree = "<group>"; };
+		9F3508E41BCDF10D003CE959 /* radio_unchecked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = radio_unchecked.png; sourceTree = "<group>"; };
+		9F3508E51BCDF10D003CE959 /* radio_unchecked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "radio_unchecked@2x.png"; sourceTree = "<group>"; };
+		9F3508EE1BCE0297003CE959 /* Popover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Popover.h; path = ../../../Popover.h; sourceTree = "<group>"; };
+		9F3508EF1BCE0297003CE959 /* Popover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Popover.m; path = ../../../Popover.m; sourceTree = "<group>"; };
 		9F47BFAE1BC756C600D92158 /* Tool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tool.h; sourceTree = "<group>"; };
 		9F47BFAF1BC756C600D92158 /* Tool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tool.m; sourceTree = "<group>"; };
 		9F47BFB11BC7A5BF00D92158 /* singleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = singleton.h; sourceTree = "<group>"; };
@@ -188,6 +202,12 @@
 		2E113ACF1BC51C670058950F /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				9F3508E01BCDF10D003CE959 /* QRadioButton.h */,
+				9F3508E11BCDF10D003CE959 /* QRadioButton.m */,
+				9F3508E21BCDF10D003CE959 /* radio_checked.png */,
+				9F3508E31BCDF10D003CE959 /* radio_checked@2x.png */,
+				9F3508E41BCDF10D003CE959 /* radio_unchecked.png */,
+				9F3508E51BCDF10D003CE959 /* radio_unchecked@2x.png */,
 				9F47BFAE1BC756C600D92158 /* Tool.h */,
 				9F47BFAF1BC756C600D92158 /* Tool.m */,
 				9F47BFB11BC7A5BF00D92158 /* singleton.h */,
@@ -201,6 +221,8 @@
 		2E113AD01BC51C670058950F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				9F3508EE1BCE0297003CE959 /* Popover.h */,
+				9F3508EF1BCE0297003CE959 /* Popover.m */,
 				2E113AD11BC51C670058950F /* UserInformationTableViewCell.h */,
 				2E113AD21BC51C670058950F /* UserInformationTableViewCell.m */,
 				2E113AD31BC51C670058950F /* UserInformationTableViewCell.xib */,
@@ -390,7 +412,11 @@
 			files = (
 				2EFD34971BC2840200F02152 /* Main.storyboard in Resources */,
 				2E113AD71BC51C670058950F /* UserInformationTableViewCell.xib in Resources */,
+				9F3508E71BCDF10D003CE959 /* radio_checked.png in Resources */,
+				9F3508EA1BCDF10D003CE959 /* radio_unchecked@2x.png in Resources */,
 				2E46E3001BCBA5D900AC0B9D /* jiazaipic.png in Resources */,
+				9F3508E91BCDF10D003CE959 /* radio_unchecked.png in Resources */,
+				9F3508E81BCDF10D003CE959 /* radio_checked@2x.png in Resources */,
 				2EFD34991BC2840200F02152 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -419,10 +445,12 @@
 				2E113AD41BC51C670058950F /* LoginViewController.m in Sources */,
 				9F5FE5351BCB91CC00592124 /* qjtSingleton.m in Sources */,
 				9F5FE5251BCB851200592124 /* SDImageCache.m in Sources */,
+				9F3508E61BCDF10D003CE959 /* QRadioButton.m in Sources */,
 				9F5FE5241BCB851200592124 /* NSData+ImageContentType.m in Sources */,
 				2E80D2471BC66B3B00C29A50 /* SearchResultViewController.m in Sources */,
 				9F5FE5271BCB851200592124 /* SDWebImageDecoder.m in Sources */,
 				2E80D24A1BC672D200C29A50 /* ShowDetailViewController.m in Sources */,
+				9F3508F01BCE0297003CE959 /* Popover.m in Sources */,
 				9F5FE5301BCB851200592124 /* UIImageView+HighlightedWebCache.m in Sources */,
 				2EFD34911BC2840200F02152 /* AppDelegate.m in Sources */,
 				9F5FE5281BCB851200592124 /* SDWebImageDownloader.m in Sources */,
