@@ -21,7 +21,6 @@
 		2EFD34911BC2840200F02152 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EFD34901BC2840200F02152 /* AppDelegate.m */; };
 		2EFD34971BC2840200F02152 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2EFD34951BC2840200F02152 /* Main.storyboard */; };
 		2EFD34991BC2840200F02152 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2EFD34981BC2840200F02152 /* Images.xcassets */; };
-		2EFD349C1BC2840200F02152 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EFD349A1BC2840200F02152 /* LaunchScreen.xib */; };
 		2EFD34A81BC2840300F02152 /* ___Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EFD34A71BC2840300F02152 /* ___Tests.m */; };
 		9F47BFB01BC756C600D92158 /* Tool.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F47BFAF1BC756C600D92158 /* Tool.m */; };
 		9F47BFB31BC7A5BF00D92158 /* singleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F47BFB21BC7A5BF00D92158 /* singleton.m */; };
@@ -81,7 +80,6 @@
 		2EFD34901BC2840200F02152 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		2EFD34961BC2840200F02152 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2EFD34981BC2840200F02152 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		2EFD349B1BC2840200F02152 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		2EFD34A11BC2840300F02152 /* 导客宝Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "导客宝Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EFD34A61BC2840300F02152 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2EFD34A71BC2840300F02152 /* ___Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "___Tests.m"; sourceTree = "<group>"; };
@@ -238,7 +236,6 @@
 				2EFD34951BC2840200F02152 /* Main.storyboard */,
 				2E46E2FF1BCBA5D900AC0B9D /* jiazaipic.png */,
 				2EFD34981BC2840200F02152 /* Images.xcassets */,
-				2EFD349A1BC2840200F02152 /* LaunchScreen.xib */,
 				2EFD348B1BC2840200F02152 /* Supporting Files */,
 			);
 			path = "导客宝";
@@ -392,7 +389,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2EFD34971BC2840200F02152 /* Main.storyboard in Resources */,
-				2EFD349C1BC2840200F02152 /* LaunchScreen.xib in Resources */,
 				2E113AD71BC51C670058950F /* UserInformationTableViewCell.xib in Resources */,
 				2E46E3001BCBA5D900AC0B9D /* jiazaipic.png in Resources */,
 				2EFD34991BC2840200F02152 /* Images.xcassets in Resources */,
@@ -471,14 +467,6 @@
 				2EFD34961BC2840200F02152 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		2EFD349A1BC2840200F02152 /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2EFD349B1BC2840200F02152 /* Base */,
-			);
-			name = LaunchScreen.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -570,6 +558,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = "导客宝/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -580,6 +569,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = "导客宝/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
