@@ -43,6 +43,7 @@
 
 //筛选按钮
 @property (weak, nonatomic) IBOutlet UIButton *selectButton;
+@property (weak, nonatomic) IBOutlet UIButton *typebutton;
 //头像
 @property (weak, nonatomic) IBOutlet UIImageView *faceImage;
 
@@ -53,7 +54,7 @@
 - (void)viewDidLoad {
 
     [super viewDidLoad];
-   // isCloud = YES;
+    //isCloud = YES;
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
     self.faceImage.userInteractionEnabled = YES;
@@ -71,25 +72,33 @@
     qjtNameArray = [[NSMutableArray alloc]init];
     qjtImageArray = [[NSMutableArray alloc]init];
     [self GetQJTList];
-     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tongzhi:) name:@"tongzhi" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tongzhi:) name:@"tongzhi" object:nil];
    
 }
 - (void)tongzhi:(NSNotification *)text{
     
-    NSLog(@"%@",text.userInfo[@"type"]);
     if (popover) {
         [popover dismissPopoverAnimated:NO];
+    }
+    if([text.userInfo[@"type"] isEqualToString:@"曲美装饰"])
+    {
+        [self.typebutton setTitle:@"曲美装饰" forState:UIControlStateNormal];
+        isCloud = NO;
+         [qjtTableView reloadData];
+    }
+    else
+    {
+        [self.typebutton setTitle:@"云库" forState:UIControlStateNormal];
+        isCloud = YES;
+        //NSLog(@"%d",qjtImageArray.count);
+         [qjtTableView reloadData];
     }
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-#pragma mark typeDelegate
--(void)selectType:(NSString *)type
-{
-    NSLog(@"type=%@",type);
-}
+
 - (IBAction)changeStyle:(id)sender {
     UIButton *button = (UIButton*)sender;
     Popover *qktb = [[Popover alloc]init];
@@ -102,10 +111,9 @@
     
     // 设置尺寸
     
-    popover.popoverContentSize = CGSizeMake(320, 80);
+    popover.popoverContentSize = CGSizeMake(160, 80);
     
     // 从哪里出来
-    
     [popover presentPopoverFromRect:button.frame inView:button.superview permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
 }
 
@@ -190,58 +198,43 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        
         tableView.backgroundColor = [UIColor clearColor];
         cell.backgroundColor = [UIColor clearColor];
         cell.contentView.backgroundColor = [UIColor clearColor];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
-        if (!isCloud) {
-            if (indexPath.row == 0) {
-                if (qjtImageArray.count <= 3) {
-                    for (int i = 0; i < qjtImageArray.count; i++) {
-                        if (i ==0) {
-                            UIView *view = [self qjtDraw:CGRectMake(10, 5, 665, 490) qjtImage:[qjtImageArray objectAtIndex:0] title:[qjtNameArray objectAtIndex:0] isCollect:YES tag:0];
-                            [cell.contentView addSubview:view];
-                        }
-                        else
-                        {
-                            UIView *view = [self qjtDraw:CGRectMake(690, 5+250*(i-1), 325, 240) qjtImage:[qjtImageArray objectAtIndex:i] title:[qjtNameArray objectAtIndex:i] isCollect:YES tag:i];
-                            [cell.contentView addSubview:view];
-                        }
-                    }
 
-                }
-                else
-                {
-                    for (int i = 0; i < 3; i++) {
-                        if (i ==0) {
-                            UIView *view = [self qjtDraw:CGRectMake(10, 5, 665, 490) qjtImage:[qjtImageArray objectAtIndex:0] title:[qjtNameArray objectAtIndex:0] isCollect:YES tag:0];
-                            [cell.contentView addSubview:view];
-                        }
-                        else
-                        {
-                            UIView *view = [self qjtDraw:CGRectMake(690, 5+250*(i-1), 325, 240) qjtImage:[qjtImageArray objectAtIndex:i] title:[qjtNameArray objectAtIndex:i] isCollect:YES tag:i];
-                            [cell.contentView addSubview:view ];
-                        }
+    }
+    for (UIView *view in [cell.contentView subviews]) {
+        [view removeFromSuperview];
+    }
+    if (!isCloud) {
+        if (indexPath.row == 0) {
+            if (qjtImageArray.count <= 3) {
+                for (int i = 0; i < qjtImageArray.count; i++) {
+                    if (i ==0) {
+                        UIView *view = [self qjtDraw:CGRectMake(10, 5, 665, 490) qjtImage:[qjtImageArray objectAtIndex:0] title:[qjtNameArray objectAtIndex:0] isCollect:YES tag:0];
+                        [cell.contentView addSubview:view];
+                    }
+                    else
+                    {
+                        UIView *view = [self qjtDraw:CGRectMake(690, 5+250*(i-1), 325, 240) qjtImage:[qjtImageArray objectAtIndex:i] title:[qjtNameArray objectAtIndex:i] isCollect:YES tag:i];
+                        [cell.contentView addSubview:view];
                     }
                 }
+                
             }
             else
             {
-                if (indexPath.row != (qjtImageArray.count/3)) {
-
-                    for (int i = 0; i < 3; i++) {
-                        
-                        UIView *view = [self qjtDraw:CGRectMake(10+340*i, 5, 325, 240) qjtImage:[qjtImageArray objectAtIndex:3*indexPath.row+i] title:[qjtNameArray objectAtIndex:3*indexPath.row+i] isCollect:YES tag:3*indexPath.row+i];
+                for (int i = 0; i < 3; i++) {
+                    if (i ==0) {
+                        UIView *view = [self qjtDraw:CGRectMake(10, 5, 665, 490) qjtImage:[qjtImageArray objectAtIndex:0] title:[qjtNameArray objectAtIndex:0] isCollect:YES tag:0];
                         [cell.contentView addSubview:view];
                     }
-                }
-                else
-                {
-                    for (int i = 0; i < qjtImageArray.count%3; i++) {
-                        
-                        UIView *view = [self qjtDraw:CGRectMake(10+340*i, 5, 325, 240) qjtImage:[qjtImageArray objectAtIndex:3*indexPath.row+i] title:[qjtNameArray objectAtIndex:3*indexPath.row+i] isCollect:YES tag:3*indexPath.row+i];
-                        [cell.contentView addSubview:view];
+                    else
+                    {
+                        UIView *view = [self qjtDraw:CGRectMake(690, 5+250*(i-1), 325, 240) qjtImage:[qjtImageArray objectAtIndex:i] title:[qjtNameArray objectAtIndex:i] isCollect:YES tag:i];
+                        [cell.contentView addSubview:view ];
                     }
                 }
             }
@@ -249,8 +242,8 @@
         else
         {
             if (indexPath.row != (qjtImageArray.count/3)) {
+                
                 for (int i = 0; i < 3; i++) {
-                    
                     UIView *view = [self qjtDraw:CGRectMake(10+340*i, 5, 325, 240) qjtImage:[qjtImageArray objectAtIndex:3*indexPath.row+i] title:[qjtNameArray objectAtIndex:3*indexPath.row+i] isCollect:YES tag:3*indexPath.row+i];
                     [cell.contentView addSubview:view];
                 }
@@ -265,6 +258,25 @@
             }
         }
     }
+    else
+    {
+        if (indexPath.row != (qjtImageArray.count/3)) {
+            for (int i = 0; i < 3; i++) {
+                
+                UIView *view = [self qjtDraw:CGRectMake(10+340*i, 5, 325, 240) qjtImage:[qjtImageArray objectAtIndex:3*indexPath.row+i] title:[qjtNameArray objectAtIndex:3*indexPath.row+i] isCollect:YES tag:3*indexPath.row+i];
+                [cell.contentView addSubview:view];
+            }
+        }
+        else
+        {
+            for (int i = 0; i < qjtImageArray.count%3; i++) {
+                
+                UIView *view = [self qjtDraw:CGRectMake(10+340*i, 5, 325, 240) qjtImage:[qjtImageArray objectAtIndex:3*indexPath.row+i] title:[qjtNameArray objectAtIndex:3*indexPath.row+i] isCollect:YES tag:3*indexPath.row+i];
+                [cell.contentView addSubview:view];
+            }
+        }
+    }
+
     return cell;
 }
 #pragma mark 全景图展示

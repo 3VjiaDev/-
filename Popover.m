@@ -22,7 +22,7 @@
 -(NSArray *)menus
  {
     if (_menus==nil) {
-            _menus=@[@"列表1",@"列表2"];
+            _menus=@[@"曲美装饰",@"云库"];
         }
     return _menus;
 }
@@ -53,6 +53,7 @@
     UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:ID];
     if (cell==nil) {
         cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         if (indexPath.row == 0) {
             cell.contentView.backgroundColor = [UIColor yellowColor];
         }

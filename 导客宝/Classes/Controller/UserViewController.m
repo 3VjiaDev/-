@@ -34,6 +34,7 @@
 }
 
 @property (weak, nonatomic) IBOutlet UITableView *customerTable;
+@property (weak, nonatomic) IBOutlet UIView *titleView;
 
 //添加客户
 - (IBAction)addClient:(id)sender;
@@ -45,13 +46,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
-    [self getCustomerList];
+    
     nameAry = [[NSMutableArray alloc]init];
     IDAry = [[NSMutableArray alloc]init];
     phoneAry = [[NSMutableArray alloc]init];
     addrAry = [[NSMutableArray alloc]init];
     styleAry = [[NSMutableArray alloc]init];
     markAry = [[NSMutableArray alloc]init];
+    [self getCustomerList];
+    [self cellFristRow:self.titleView];
     
     // Do any additional setup after loading the view.
 }
@@ -93,6 +96,7 @@
                  NSString *CustomerId = [list objectForKey:@"CustomerId"];
                  NSString *Mobile = [list objectForKey:@"Mobile"];
                  NSString *Address = [list objectForKey:@"Address"];
+                 NSLog(@"name = %@",CustomerName);
                  
                  [nameAry addObject:CustomerName];
                  [IDAry addObject:CustomerId];
@@ -100,6 +104,7 @@
                  [addrAry addObject:Address];
                  
              }
+             NSLog(@"%@",nameAry);
              [self.customerTable reloadData];
          }
      }];
@@ -156,6 +161,7 @@
              NSString *Json = [dic objectForKey:@"JSON"];
              if (Json != nil) {
                  //添加客户成功
+
                  [UIView animateWithDuration:0.3
                                   animations:^{
                                       addView.alpha = 0.0f;
@@ -163,6 +169,15 @@
                                   completion:^(BOOL finished){
                                       [addView removeFromSuperview];
                                   }];
+                 nameAry = [[NSMutableArray alloc]init];
+                 IDAry = [[NSMutableArray alloc]init];
+                 phoneAry = [[NSMutableArray alloc]init];
+                 addrAry = [[NSMutableArray alloc]init];
+                 styleAry = [[NSMutableArray alloc]init];
+                 markAry = [[NSMutableArray alloc]init];
+                 [self getCustomerList];
+                 
+
              }
              else
              {
@@ -232,7 +247,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return nameAry.count+1;
+    return nameAry.count;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -242,16 +257,15 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
 
     if (cell == nil) {
+       
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        if (indexPath.row == 0) {
-            [self cellFristRow:cell.contentView];
-        }
-        else
-        {
-            [self cellRow:cell.contentView name:[nameAry objectAtIndex:indexPath.row-1] phone:[phoneAry objectAtIndex:indexPath.row-1] address:[addrAry objectAtIndex:indexPath.row-1] style:[nameAry objectAtIndex:indexPath.row-1]];
-        }
+
     }
+    for (UIView *view in [cell.contentView subviews]) {
+        [view removeFromSuperview];
+    }
+    [self cellRow:cell.contentView name:[nameAry objectAtIndex:indexPath.row] phone:[phoneAry objectAtIndex:indexPath.row] address:[addrAry objectAtIndex:indexPath.row] style:[nameAry objectAtIndex:indexPath.row]];
     return cell;
 }
 
@@ -265,7 +279,7 @@
         id xPoint = [xAry objectAtIndex:i];
         id width = [widthAry objectAtIndex:i];
         
-        UILabel *lab = [[UILabel alloc]initWithFrame:CGRectMake([xPoint floatValue], 0, [width floatValue], h)];
+        UILabel *lab = [[UILabel alloc]initWithFrame:CGRectMake([xPoint floatValue], 12, [width floatValue], 20)];
         lab.text = [infoAry objectAtIndex:i];
         lab.textAlignment = NSTextAlignmentCenter;
         [view addSubview:lab];

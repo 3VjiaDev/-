@@ -10,5 +10,4 @@
 
 @interface ShopViewController : UIViewController
 
--(void)switchMenu:(NSString*)string;
 @end
