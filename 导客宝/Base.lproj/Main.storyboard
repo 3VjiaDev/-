@@ -716,7 +716,9 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="des-G8-ODe"/>
+                                    <constraint firstAttribute="height" constant="40" id="des-G8-ODe">
+                                        <variation key="heightClass=regular-widthClass=regular" constant="44"/>
+                                    </constraint>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
@@ -754,8 +756,12 @@
                             <constraint firstAttribute="trailing" secondItem="Pq6-TY-WsZ" secondAttribute="trailing" constant="15" id="bSE-Nw-rf1"/>
                             <constraint firstItem="Pq6-TY-WsZ" firstAttribute="leading" secondItem="JyS-M1-MHg" secondAttribute="leading" constant="15" id="chs-Yt-ssj"/>
                             <constraint firstAttribute="trailing" secondItem="rPr-E8-meQ" secondAttribute="trailing" id="fMb-o9-qqG"/>
-                            <constraint firstItem="EnU-nL-fHK" firstAttribute="top" secondItem="Pq6-TY-WsZ" secondAttribute="bottom" id="ibQ-Dn-cDZ"/>
-                            <constraint firstItem="Pq6-TY-WsZ" firstAttribute="top" secondItem="rPr-E8-meQ" secondAttribute="bottom" constant="20" id="oCT-fO-AYN"/>
+                            <constraint firstItem="EnU-nL-fHK" firstAttribute="top" secondItem="Pq6-TY-WsZ" secondAttribute="bottom" id="ibQ-Dn-cDZ">
+                                <variation key="heightClass=regular-widthClass=regular" constant="1"/>
+                            </constraint>
+                            <constraint firstItem="Pq6-TY-WsZ" firstAttribute="top" secondItem="rPr-E8-meQ" secondAttribute="bottom" constant="20" id="oCT-fO-AYN">
+                                <variation key="heightClass=regular-widthClass=regular" constant="19"/>
+                            </constraint>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
