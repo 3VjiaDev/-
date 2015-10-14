@@ -102,16 +102,16 @@
 - (IBAction)changeStyle:(id)sender {
     UIButton *button = (UIButton*)sender;
     Popover *qktb = [[Popover alloc]init];
-    qktb.view.backgroundColor = [UIColor yellowColor];
+    qktb.view.backgroundColor = [UIColor colorWithRed:239/255.0 green:142/255.0 blue:61/255.0 alpha:1.0f];
     
     // 创建一个UIPopover
     
     popover = [[UIPopoverController alloc]initWithContentViewController:qktb];
-    popover.backgroundColor = [UIColor yellowColor];
+    popover.backgroundColor = [UIColor colorWithRed:239/255.0 green:142/255.0 blue:61/255.0 alpha:1.0f];
     
     // 设置尺寸
     
-    popover.popoverContentSize = CGSizeMake(160, 80);
+    popover.popoverContentSize = CGSizeMake(100, 60);
     
     // 从哪里出来
     [popover presentPopoverFromRect:button.frame inView:button.superview permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];

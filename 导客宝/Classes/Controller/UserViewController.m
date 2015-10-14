@@ -127,7 +127,7 @@
     NSString *authCode =[Tool readAuthCodeString];
     
     NSArray *key = @[@"authCode",@"DeptId",@"pageSize",@"pageIndex"];
-    NSArray *object = @[authCode,DeptId,@"10",pageIndex];
+    NSArray *object = @[authCode,DeptId,@"12",pageIndex];
     
     NSString *param=[NSString stringWithFormat:@"Params=%@&Command=ShopManager/GetCustomerList",[Tool param:object forKey:key]];
     NSLog(@"http://passport.admin.3weijia.com/mnmnhwap.axd?%@",param);
@@ -306,6 +306,11 @@
         lab.text = [infoAry objectAtIndex:i];
         lab.textAlignment = NSTextAlignmentCenter;
         [view addSubview:lab];
+        if (i != 0) {
+            UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake([xPoint floatValue], 0, 1, h)];
+            lineView.backgroundColor = [UIColor groupTableViewBackgroundColor];
+            [view addSubview:lineView];
+        }
     }
 }
 -(void)addUserView
